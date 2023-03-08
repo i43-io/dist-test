@@ -7,9 +7,6 @@ const container = ref(null)
 const props = defineProps({ data: { type: Array } })
 watch(() => props.data, val => {
   val = val.map(i => [parseFloat(i[0]), i[1]])
-  console.log(val)
-  const x = val.map(i => parseFloat(i[0]))
-  const y = val.map(i => i[1])
   Highcharts.chart(container.value, {
     title: {
       text: ''
