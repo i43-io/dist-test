@@ -7,12 +7,9 @@ const raw = ref('1-5:0,6-10:11,11-15:17,16-20:19,21-25:37,26-30:50,31-35:72,36-4
 function setData() {
   const txt = raw.value
   const isCsv = !/:/g.test(txt)
-  if (isCsv) {
-  } else {
-    const items = txt.split(',').map(i => i.split(':'))
-    items.forEach(i => i[1] *= 1)
-    emit('update:modelValue', items)
-  }
+  const items = isCsv ? txt.split('\n').map(i => i.split(',')) : txt.split(',').map(i => i.split(':'))
+  items.forEach(i => i[1] *= 1)
+  emit('update:modelValue', items)
 }
 
 defineProps({
